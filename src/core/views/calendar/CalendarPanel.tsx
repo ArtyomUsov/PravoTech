@@ -39,7 +39,7 @@ export const CalendarPanel = ({
   // Агент анализирует — ещё нет событий
   if (isAgentWorking && sortedEvents.length === 0) {
     return (
-      <Box sx={{ p: 2 }}>
+      <Box sx={{ p: 2, maxHeight: 400 }}>
         <Box sx={{ mb: 2, textAlign: "center" }}>
           <Typography
             variant="caption"
@@ -93,7 +93,7 @@ export const CalendarPanel = ({
   }
 
   return (
-    <Box sx={{ p: 1 }}>
+    <Box sx={{ p: 1, maxHeight: 400 }}>
       <Typography variant="subtitle2" sx={{ px: 1, mb: 1, fontWeight: 600 }}>
         Календарь
       </Typography>
