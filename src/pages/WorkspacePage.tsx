@@ -52,7 +52,12 @@ const WorkspaceContent = observer(
     const renderCenterContent = () => {
       switch (activeTab?.type) {
         case "document-list":
-          return <DocumentListPanel documents={filteredDocuments} />;
+          return (
+            <DocumentListPanel
+              documents={filteredDocuments}
+              onOpenDocument={onOpenDocument}
+            />
+          );
         case "event-list":
           return <AuditPanel entries={wsVM.auditEntries} />;
         case "chat-list":
@@ -152,7 +157,20 @@ const WorkspaceContent = observer(
 );
 
 /** Простой список документов для вкладки */
-const DocumentListPanel = ({ documents }: { documents: Document[] }) => (
+const docTypeLabels: Record<string, string> = {
+  contract: "Договор",
+  court_doc: "Судебный документ",
+  appendix: "Приложение",
+  template: "Шаблон",
+};
+
+const DocumentListPanel = ({
+  documents,
+  onOpenDocument,
+}: {
+  documents: Document[];
+  onOpenDocument?: (docId: string) => void;
+}) => (
   <Box sx={{ flexGrow: 1, overflowY: "auto", p: 2 }}>
     {documents.length === 0 ? (
       <Typography
@@ -166,6 +184,7 @@ const DocumentListPanel = ({ documents }: { documents: Document[] }) => (
       documents.map((doc) => (
         <Box
           key={doc.id}
+          onClick={() => onOpenDocument?.(doc.id)}
           sx={{
             p: 1.5,
             mb: 1,
@@ -179,7 +198,7 @@ const DocumentListPanel = ({ documents }: { documents: Document[] }) => (
             {doc.title}
           </Typography>
           <Typography variant="caption" color="text.secondary">
-            {doc.metadata?.type || doc.type}
+            {docTypeLabels[doc.type] || doc.type}
           </Typography>
         </Box>
       ))
