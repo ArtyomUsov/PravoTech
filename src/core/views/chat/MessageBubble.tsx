@@ -30,22 +30,14 @@ export const MessageBubble = ({
         sx={{
           width: 32,
           height: 32,
-          bgcolor: isUser ? "#8C26EA" : "#00897b",
+          bgcolor: isUser ? "#8C26EA" : "#0d06280f",
           border: "1px solid #8C26EA",
           fontSize: 14,
-          color: "#fff",
+          color: isUser ? "#fff" : "#8C26EA",
           overflow: "hidden",
         }}
       >
-        {isUser ? (
-          "Вы"
-        ) : (
-          <img
-            src="/faviconYellow.png"
-            alt="Агент"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
-        )}
+        {isUser ? "Вы" : "A"}
       </Avatar>
 
       <Box
