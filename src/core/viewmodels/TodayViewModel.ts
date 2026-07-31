@@ -25,6 +25,7 @@ export class TodayViewModel extends BaseViewModel {
   constructor(
     domain: DomainStore,
     cardQueueVM: CardQueueViewModel,
+    taskListVM: TaskListViewModel,
     chatVM: ChatViewModel
   ) {
     super(); // subscriptions + dispose
@@ -37,7 +38,7 @@ export class TodayViewModel extends BaseViewModel {
     this.domain = domain;
     this.chatVM = chatVM;
     this.cardQueueVM = cardQueueVM;
-    this.taskListVM = new TaskListViewModel(cardQueueVM, domain);
+    this.taskListVM = taskListVM;
     this.orchestrator = new AgentOrchestrator(domain, chatVM);
   }
 

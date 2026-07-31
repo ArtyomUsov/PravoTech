@@ -8,6 +8,7 @@ import {
 import { BaseViewModel } from "../base/BaseViewModel";
 import { DomainStore } from "../domain/DomainStore";
 import { CardQueueViewModel } from "./CardQueueViewModel";
+import { TaskListViewModel } from "./TaskListViewModel";
 import { ChatViewModel } from "./ChatViewModel";
 import { WorkspaceConfig } from "../models/Workspace";
 import { CalendarEvent } from "../models/CalendarEvent";
@@ -27,6 +28,7 @@ export class WorkspaceViewModel extends BaseViewModel {
   config: WorkspaceConfig;
   chatVM: ChatViewModel;
   cardQueueVM: CardQueueViewModel;
+  taskListVM: TaskListViewModel;
   activeTabId: string;
   activeThreadId: string | null = null;
   chatThreads: ChatThread[] = [];
@@ -38,6 +40,7 @@ export class WorkspaceViewModel extends BaseViewModel {
     domain: DomainStore,
     config: WorkspaceConfig,
     cardQueueVM: CardQueueViewModel,
+    taskListVM: TaskListViewModel,
     chatVM: ChatViewModel
   ) {
     super(); // subscriptions + dispose
@@ -57,6 +60,7 @@ export class WorkspaceViewModel extends BaseViewModel {
     this.domain = domain;
     this.config = config;
     this.cardQueueVM = cardQueueVM;
+    this.taskListVM = taskListVM;
     this.chatVM = chatVM;
     this.activeTabId = config.tabs[0]?.id ?? "";
   }
@@ -76,7 +80,14 @@ export class WorkspaceViewModel extends BaseViewModel {
       );
     }
 
-    return list;
+    // Показываем только события, привязанные к карточкам в очереди или в задачах
+    const queueCardIds = new Set(this.cardQueueVM.sortedCards.map((c) => c.id));
+    const taskCardIds = new Set(this.taskListVM.tasks.map((c) => c.id));
+    const knownCardIds = new Set([...queueCardIds, ...taskCardIds]);
+
+    return list.filter(
+      (e) => !e.relatedCardId || knownCardIds.has(e.relatedCardId)
+    );
   }
 
   get documents(): Document[] {

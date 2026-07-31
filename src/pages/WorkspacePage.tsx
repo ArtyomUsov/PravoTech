@@ -148,7 +148,10 @@ const WorkspaceContent = observer(
             />
           </Box>
           <Box sx={{ overflowY: "auto" }}>
-            <CalendarPanel events={wsVM.calendarEvents} />
+            <CalendarPanel
+              events={wsVM.calendarEvents}
+              onOpenCard={onExpandCard}
+            />
           </Box>
         </Box>
       </Box>

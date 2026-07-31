@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  List,
-  ListItem,
-  ListItemText,
-  Chip,
-} from "@mui/material";
+import { Box, Typography, List, ListItem, Chip } from "@mui/material";
 import { CalendarEvent } from "../../models/CalendarEvent";
 
 const eventColors: Record<string, string> = {
@@ -23,7 +16,13 @@ const eventLabels: Record<string, string> = {
   reminder: "Напоминание",
 };
 
-export const CalendarPanel = ({ events }: { events: CalendarEvent[] }) => {
+export const CalendarPanel = ({
+  events,
+  onOpenCard,
+}: {
+  events: CalendarEvent[];
+  onOpenCard?: (cardId: string) => void;
+}) => {
   const sortedEvents = [...events].sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
   );
@@ -50,39 +49,62 @@ export const CalendarPanel = ({ events }: { events: CalendarEvent[] }) => {
               py: 0.5,
               borderRadius: 1,
               "&:hover": { bgcolor: "#f5f5f5" },
+              cursor: event.relatedCardId ? "pointer" : "default",
             }}
+            onClick={() =>
+              event.relatedCardId && onOpenCard?.(event.relatedCardId)
+            }
           >
-            <ListItemText
-              primary={
-                <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
-                  <Chip
-                    label={eventLabels[event.type]}
-                    size="small"
-                    sx={{
-                      height: 20,
-                      fontSize: 10,
-                      bgcolor: eventColors[event.type],
-                      color: "#fff",
-                    }}
-                  />
-                  <Typography
-                    variant="body2"
-                    sx={{ fontSize: 13, fontWeight: 500 }}
-                  >
-                    {event.title}
-                  </Typography>
-                </Box>
-              }
-              secondary={
-                <Typography variant="caption" color="text.secondary">
-                  {new Date(event.date).toLocaleDateString("ru-RU", {
-                    day: "numeric",
-                    month: "long",
-                  })}
-                  {event.priority === "high" && " • 🔴 Важно"}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                flex: 1,
+              }}
+            >
+              <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+                <Chip
+                  label={eventLabels[event.type]}
+                  size="small"
+                  sx={{
+                    height: 18,
+                    fontSize: 9,
+                    bgcolor: eventColors[event.type],
+                    color: "#fff",
+                  }}
+                />
+                <Typography
+                  variant="body2"
+                  sx={{ fontSize: 13, fontWeight: 500 }}
+                >
+                  {event.title}
                 </Typography>
-              }
-            />
+              </Box>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: event.priority === "high" ? "#d32f2f" : "#999",
+                  fontWeight: event.priority === "high" ? 600 : 400,
+                  display: "block",
+                  mt: 0.25,
+                }}
+              >
+                {new Date(event.date).toLocaleDateString("ru-RU", {
+                  day: "numeric",
+                  month: "short",
+                })}
+                {event.priority === "high" && " • 🔴 Важно"}
+              </Typography>
+            </Box>
+            {event.relatedCardId && (
+              <Typography
+                variant="caption"
+                sx={{ color: "#8C26EA", ml: 0.5, flexShrink: 0 }}
+              >
+                →
+              </Typography>
+            )}
           </ListItem>
         ))}
       </List>

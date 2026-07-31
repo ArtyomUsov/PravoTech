@@ -45,7 +45,9 @@ const AppContent = observer(() => {
 
   const handleExpandCard = (cardId: string) => {
     if (currentPage === "today") {
+      // Сначала проверяем очередь, потом задачи
       store.todayVM.cardQueueVM.setExpandedCardId(cardId);
+      store.todayVM.taskListVM.selectTask(cardId);
     } else if (currentWorkspaceId) {
       const ws = store.getWorkspace(currentWorkspaceId);
       if (ws) {

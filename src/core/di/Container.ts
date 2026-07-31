@@ -4,6 +4,7 @@ import { DocumentService } from "../services/DocumentService";
 import { CalendarService } from "../services/CalendarService";
 import { DomainStore } from "../domain/DomainStore";
 import { CardQueueViewModel } from "../viewmodels/CardQueueViewModel";
+import { TaskListViewModel } from "../viewmodels/TaskListViewModel";
 import { ChatViewModel } from "../viewmodels/ChatViewModel";
 import { TodayViewModel } from "../viewmodels/TodayViewModel";
 import { WorkspaceViewModel } from "../viewmodels/WorkspaceViewModel";
@@ -33,13 +34,16 @@ export interface DIContainer extends ServiceContainer {
   /** Factories */
   createChatVM: (initialMessages?: Message[]) => ChatViewModel;
   createCardQueueVM: () => CardQueueViewModel;
+  createTaskListVM: (cardQueueVM: CardQueueViewModel) => TaskListViewModel;
   createTodayVM: (
     cardQueueVM: CardQueueViewModel,
+    taskListVM: TaskListViewModel,
     chatVM: ChatViewModel
   ) => TodayViewModel;
   createWorkspaceVM: (
     config: WorkspaceConfig,
     cardQueueVM: CardQueueViewModel,
+    taskListVM: TaskListViewModel,
     chatVM: ChatViewModel
   ) => WorkspaceViewModel;
 }
@@ -70,11 +74,14 @@ export function createProductionContainer(): DIContainer {
 
     createCardQueueVM: () => new CardQueueViewModel(domain),
 
-    createTodayVM: (cardQueueVM, chatVM) =>
-      new TodayViewModel(domain, cardQueueVM, chatVM),
+    createTaskListVM: (cardQueueVM) =>
+      new TaskListViewModel(cardQueueVM, domain),
 
-    createWorkspaceVM: (config, cardQueueVM, chatVM) =>
-      new WorkspaceViewModel(domain, config, cardQueueVM, chatVM),
+    createTodayVM: (cardQueueVM, taskListVM, chatVM) =>
+      new TodayViewModel(domain, cardQueueVM, taskListVM, chatVM),
+
+    createWorkspaceVM: (config, cardQueueVM, taskListVM, chatVM) =>
+      new WorkspaceViewModel(domain, config, cardQueueVM, taskListVM, chatVM),
   };
 }
 
@@ -98,9 +105,11 @@ export function createTestContainer(
     createChatVM: (initialMessages?: Message[]) =>
       new ChatViewModel(agent, card, initialMessages ?? []),
     createCardQueueVM: () => new CardQueueViewModel(domain),
-    createTodayVM: (cardQueueVM, chatVM) =>
-      new TodayViewModel(domain, cardQueueVM, chatVM),
-    createWorkspaceVM: (config, cardQueueVM, chatVM) =>
-      new WorkspaceViewModel(domain, config, cardQueueVM, chatVM),
+    createTaskListVM: (cardQueueVM) =>
+      new TaskListViewModel(cardQueueVM, domain),
+    createTodayVM: (cardQueueVM, taskListVM, chatVM) =>
+      new TodayViewModel(domain, cardQueueVM, taskListVM, chatVM),
+    createWorkspaceVM: (config, cardQueueVM, taskListVM, chatVM) =>
+      new WorkspaceViewModel(domain, config, cardQueueVM, taskListVM, chatVM),
   };
 }

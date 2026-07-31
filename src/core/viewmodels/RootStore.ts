@@ -4,6 +4,7 @@ import { DomainStore } from "../domain/DomainStore";
 import { TodayViewModel } from "./TodayViewModel";
 import { WorkspaceViewModel } from "./WorkspaceViewModel";
 import { CardQueueViewModel } from "./CardQueueViewModel";
+import { TaskListViewModel } from "./TaskListViewModel";
 import { ChatViewModel } from "./ChatViewModel";
 import { myCasesConfig } from "../services/mock/data";
 
@@ -11,6 +12,7 @@ export class RootStore {
   container: DIContainer;
   domain: DomainStore;
   cardQueueVM: CardQueueViewModel;
+  taskListVM: TaskListViewModel;
   todayVM: TodayViewModel;
   myCasesWorkspaceVM: WorkspaceViewModel;
   currentWorkspaceVM: WorkspaceViewModel | null = null;
@@ -24,15 +26,23 @@ export class RootStore {
     // CardQueue — общая для всех, читает из DomainStore
     this.cardQueueVM = this.container.createCardQueueVM();
 
+    // TaskList — для Today
+    this.taskListVM = this.container.createTaskListVM(this.cardQueueVM);
+
     // Чат для «Сегодня»
     const todayChatVM = this.container.createChatVM();
-    this.todayVM = this.container.createTodayVM(this.cardQueueVM, todayChatVM);
+    this.todayVM = this.container.createTodayVM(
+      this.cardQueueVM,
+      this.taskListVM,
+      todayChatVM
+    );
 
     // Единое рабочее пространство «Мои дела»
     const myCasesChatVM = this.container.createChatVM();
     this.myCasesWorkspaceVM = this.container.createWorkspaceVM(
       myCasesConfig,
       this.cardQueueVM,
+      this.taskListVM,
       myCasesChatVM
     );
   }

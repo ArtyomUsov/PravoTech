@@ -76,7 +76,10 @@ export const TodayPage = observer(
           </Box>
 
           <Box sx={{ overflowY: "auto" }}>
-            <CalendarPanel events={todayVM.calendarEventList} />
+            <CalendarPanel
+              events={todayVM.calendarEventList}
+              onOpenCard={onExpandCard}
+            />
           </Box>
         </Box>
       </Box>
