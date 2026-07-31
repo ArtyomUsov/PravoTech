@@ -79,6 +79,7 @@ export const TodayPage = observer(
             <CalendarPanel
               events={todayVM.calendarEventList}
               onOpenCard={onExpandCard}
+              isAgentWorking={todayVM.cardQueueVM.isAgentWorking}
             />
           </Box>
         </Box>

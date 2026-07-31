@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Typography, List, ListItem, Chip } from "@mui/material";
+import {
+  Box,
+  Typography,
+  List,
+  ListItem,
+  Chip,
+  LinearProgress,
+} from "@mui/material";
 import { CalendarEvent } from "../../models/CalendarEvent";
 
 const eventColors: Record<string, string> = {
@@ -19,13 +26,63 @@ const eventLabels: Record<string, string> = {
 export const CalendarPanel = ({
   events,
   onOpenCard,
+  isAgentWorking,
 }: {
   events: CalendarEvent[];
   onOpenCard?: (cardId: string) => void;
+  isAgentWorking?: boolean;
 }) => {
   const sortedEvents = [...events].sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
   );
+
+  // Агент анализирует — ещё нет событий
+  if (isAgentWorking && sortedEvents.length === 0) {
+    return (
+      <Box sx={{ p: 2 }}>
+        <Box sx={{ mb: 2, textAlign: "center" }}>
+          <Typography
+            variant="caption"
+            sx={{
+              color: "#8C26EA",
+              fontWeight: 500,
+              display: "block",
+              mb: 1,
+            }}
+          >
+            Агент анализирует документы...
+          </Typography>
+          <LinearProgress
+            sx={{
+              height: 3,
+              borderRadius: 2,
+              bgcolor: "#f0e6ff",
+              "& .MuiLinearProgress-bar": {
+                bgcolor: "#8C26EA",
+                borderRadius: 2,
+              },
+            }}
+          />
+        </Box>
+        {[1, 2, 3].map((i) => (
+          <Box
+            key={i}
+            sx={{
+              height: 40,
+              borderRadius: 2,
+              bgcolor: "#f0f0f0",
+              mb: 1.5,
+              animation: "pulse 1.5s ease-in-out infinite",
+              "@keyframes pulse": {
+                "0%, 100%": { opacity: 0.6 },
+                "50%": { opacity: 0.2 },
+              },
+            }}
+          />
+        ))}
+      </Box>
+    );
+  }
 
   if (sortedEvents.length === 0) {
     return (

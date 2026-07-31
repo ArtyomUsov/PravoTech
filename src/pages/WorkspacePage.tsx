@@ -151,6 +151,7 @@ const WorkspaceContent = observer(
             <CalendarPanel
               events={wsVM.calendarEvents}
               onOpenCard={onExpandCard}
+              isAgentWorking={wsVM.cardQueueVM.isAgentWorking}
             />
           </Box>
         </Box>
