@@ -3,7 +3,6 @@ import { SourceRef, ActionCard } from "./ActionCard";
 export enum Role {
   User = "user",
   Agent = "agent",
-  System = "system",
 }
 
 export interface Message {

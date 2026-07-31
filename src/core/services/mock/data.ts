@@ -379,7 +379,7 @@ export const litigationCards: ActionCard[] = actionCards.filter(
 export const todayChatMessages: Message[] = [
   {
     id: "msg-0",
-    role: Role.System,
+    role: Role.Agent,
     content:
       "На данный момент: 2 карточки P0 и 2 карточки P1 требуют вашего внимания.\n\n• **Срок подачи апелляционной жалобы** истекает сегодня (P0) — по делу №А40-12345/2025\n• **Оплата госпошлины** 35 000 ₽ — сегодня (P0)\n• **Согласование допсоглашения** по договору ДП-2024-0156 (P0)\n• **Срок ответа на претензию** истекает через 2 дня (P1)\n\nРекомендую начать с карточек P0 — по каждой подготовлены проекты документов.",
     timestamp: "2026-07-28T09:00:00Z",
@@ -389,7 +389,7 @@ export const todayChatMessages: Message[] = [
 export const contractsChatMessages: Message[] = [
   {
     id: "msg-c1",
-    role: Role.System,
+    role: Role.Agent,
     content:
       'Добрый день! В пространстве «Договоры» 4 активные карточки. По договору ДП-2024-0156 с ООО "ТехноСнаб" требуется согласование допсоглашения и подготовка ответа на претензию.',
     timestamp: "2026-07-28T09:00:00Z",
@@ -399,7 +399,7 @@ export const contractsChatMessages: Message[] = [
 export const litigationChatMessages: Message[] = [
   {
     id: "msg-l1",
-    role: Role.System,
+    role: Role.Agent,
     content:
       "Добрый день! В пространстве «Судебные дела» по делу №А40-12345/2025: сегодня истекает срок подачи апелляционной жалобы, требуется оплата госпошлины.",
     timestamp: "2026-07-28T09:00:00Z",

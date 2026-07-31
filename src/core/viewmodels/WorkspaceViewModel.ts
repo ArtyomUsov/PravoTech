@@ -202,7 +202,7 @@ export class WorkspaceViewModel extends BaseViewModel {
         messages: [
           {
             id: uid("msg"),
-            role: Role.System,
+            role: Role.Agent,
             content:
               "Контрагент прислал проект допсоглашения об изменении срока оплаты с 30 до 45 дней. Проверил условия — изменение ухудшает нашу позицию.",
             timestamp: "2026-07-28T09:00:00Z",
@@ -231,7 +231,7 @@ export class WorkspaceViewModel extends BaseViewModel {
         messages: [
           {
             id: uid("msg"),
-            role: Role.System,
+            role: Role.Agent,
             content:
               'ООО "ТехноСнаб" направило претензию о просрочке оплаты по договору ДП-2024-0156. Срок ответа — 30.07.2026.',
             timestamp: "2026-07-27T15:00:00Z",
@@ -245,7 +245,7 @@ export class WorkspaceViewModel extends BaseViewModel {
         messages: [
           {
             id: uid("msg"),
-            role: Role.System,
+            role: Role.Agent,
             content:
               "Договор аренды №А-2024-0089 истекает 31.07.2026. Требуется уведомить арендодателя.",
             timestamp: "2026-07-26T11:00:00Z",
@@ -262,7 +262,7 @@ export class WorkspaceViewModel extends BaseViewModel {
         messages: [
           {
             id: uid("msg"),
-            role: Role.System,
+            role: Role.Agent,
             content:
               'Дело №А40-12345/2025. Истец: ООО "ТехноСнаб". Предмет: взыскание задолженности 2 500 000 руб. и неустойки.',
             timestamp: "2026-07-28T08:00:00Z",

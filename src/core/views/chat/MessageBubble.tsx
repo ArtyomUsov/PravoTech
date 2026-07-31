@@ -15,7 +15,6 @@ export const MessageBubble = ({
 }) => {
   const isUser = message.role === Role.User;
   const isAgent = message.role === Role.Agent;
-  const isSystem = message.role === Role.System;
 
   return (
     <Box
@@ -31,26 +30,36 @@ export const MessageBubble = ({
         sx={{
           width: 32,
           height: 32,
-          bgcolor: isUser ? "#8C26EA" : isAgent ? "#00897b" : "#e0e0e0",
+          bgcolor: isUser ? "#8C26EA" : "#00897b",
+          border: "1px solid #8C26EA",
           fontSize: 14,
-          color: isSystem ? "#666" : "#fff",
+          color: "#fff",
+          overflow: "hidden",
         }}
       >
-        {isUser ? "Вы" : isAgent ? "А" : "i"}
+        {isUser ? (
+          "Вы"
+        ) : (
+          <img
+            src="/faviconYellow.png"
+            alt="Агент"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        )}
       </Avatar>
 
       <Box
         sx={{
           width: "100%",
           maxWidth: "75%",
-          bgcolor: isUser ? "#f5f5f5" : isSystem ? "#fff" : "#fff",
+          bgcolor: isUser ? "#f5f5f5" : "#fff",
           color: isUser ? "#fff" : "inherit",
           borderRadius: 2,
           borderTopRightRadius: isUser ? 4 : 2,
           borderTopLeftRadius: isUser ? 2 : 4,
           p: 1.5,
-          border: isSystem ? "1px solid #e0e0e0" : "none",
-          boxShadow: isSystem ? "none" : "0 1px 2px rgba(0,0,0,0.08)",
+          border: isUser ? "none" : "1px solid #e0e0e0",
+          boxShadow: isUser ? "0 1px 2px rgba(0,0,0,0.08)" : "none",
         }}
       >
         {/* Парсим текст дайджеста: inline-стрелки для буллет-пунктов */}

@@ -88,7 +88,7 @@ export class ChatViewModel extends BaseViewModel {
 
     const digestMessage: Message = observable({
       id: uid("msg"),
-      role: Role.System,
+      role: Role.Agent,
       content: "",
       timestamp: new Date().toISOString(),
       isStreaming: true,
@@ -127,7 +127,7 @@ export class ChatViewModel extends BaseViewModel {
     // Карточки НЕ задаём сразу — будут добавляться постепенно через addDigestCard()
     const digestMessage: Message = observable({
       id: uid("msg"),
-      role: Role.System,
+      role: Role.Agent,
       content: "",
       timestamp: new Date().toISOString(),
       isStreaming: true,

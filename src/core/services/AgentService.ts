@@ -19,7 +19,7 @@ export class AgentService {
   ): Promise<Message> {
     return {
       id: uid("msg"),
-      role: Role.System,
+      role: Role.Agent,
       content,
       timestamp: new Date().toISOString(),
       sourceRefs,
