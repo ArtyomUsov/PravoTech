@@ -9,14 +9,22 @@ export const ReviewCard = ({
   onResolve,
   onOpenDocument,
 }: CardProps) => (
-  <CardShell card={card} icon="🔍" isResolving={isResolving} onOpenDocument={onOpenDocument}>
+  <CardShell
+    card={card}
+    icon="🔍"
+    isResolving={isResolving}
+    onOpenDocument={onOpenDocument}
+  >
     <CardActions sx={{ px: 0, gap: 0.5, flexWrap: "wrap" }}>
       <Button
         size="small"
         variant="contained"
         color="primary"
         disabled={isResolving}
-        onClick={(e) => { e.stopPropagation(); onResolve("acknowledged"); }}
+        onClick={(e) => {
+          e.stopPropagation();
+          onResolve("acknowledged");
+        }}
         sx={{ fontSize: 12, py: 0.25 }}
       >
         Принять к сведению
@@ -26,7 +34,10 @@ export const ReviewCard = ({
         variant="outlined"
         color="inherit"
         disabled={isResolving}
-        onClick={(e) => { e.stopPropagation(); onResolve("approved"); }}
+        onClick={(e) => {
+          e.stopPropagation();
+          onResolve("approved");
+        }}
         sx={{ fontSize: 12, py: 0.25 }}
       >
         Создать задачу
@@ -36,7 +47,10 @@ export const ReviewCard = ({
         variant="outlined"
         color="inherit"
         disabled={isResolving}
-        onClick={(e) => { e.stopPropagation(); onResolve("rejected"); }}
+        onClick={(e) => {
+          e.stopPropagation();
+          onResolve("rejected");
+        }}
         sx={{ fontSize: 12, py: 0.25 }}
       >
         Отклонить

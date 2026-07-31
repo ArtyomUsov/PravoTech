@@ -301,8 +301,8 @@ export class WorkspaceViewModel extends BaseViewModel {
       this.config.id === "my-cases"
         ? [...contractThreads, ...litigationThreads]
         : this.config.id === "contracts"
-        ? contractThreads
-        : litigationThreads;
+          ? contractThreads
+          : litigationThreads;
 
     runInAction(() => {
       this.chatThreads = threads;

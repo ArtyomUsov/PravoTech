@@ -39,9 +39,7 @@ export const SideListPanel = <T extends SideListItem>({
         </Typography>
       </Box>
       <Stack spacing={1} sx={{ px: 1, py: 0.5 }}>
-        {items.map((item) =>
-          renderItem(item, item.id === selectedItem)
-        )}
+        {items.map((item) => renderItem(item, item.id === selectedItem))}
       </Stack>
     </Box>
   );

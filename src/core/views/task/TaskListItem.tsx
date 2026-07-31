@@ -253,10 +253,10 @@ export const TaskListItem = ({
                 {card.resolution.decision === "approved"
                   ? "Подтверждено"
                   : card.resolution.decision === "modified"
-                  ? "Изменено"
-                  : card.resolution.decision === "rejected"
-                  ? "Отклонено"
-                  : "Принято к сведению"}
+                    ? "Изменено"
+                    : card.resolution.decision === "rejected"
+                      ? "Отклонено"
+                      : "Принято к сведению"}
               </Typography>
               {card.resolution.comment && (
                 <Typography variant="caption" sx={{ color: "#166534" }}>

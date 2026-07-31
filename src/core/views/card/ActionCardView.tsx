@@ -110,10 +110,10 @@ export const ActionCardView = observer(
             card.priority === "P0"
               ? "#d32f2f"
               : card.priority === "P1"
-              ? "#f57c00"
-              : card.priority === "P2"
-              ? "#1976d2"
-              : "#757575",
+                ? "#f57c00"
+                : card.priority === "P2"
+                  ? "#1976d2"
+                  : "#757575",
           opacity: card.status === CardStatus.Resolved ? 0.5 : 1,
           "&:hover": { boxShadow: 3 },
           // Анимация появления карточки

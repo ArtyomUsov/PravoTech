@@ -101,7 +101,10 @@ export const AuditPanel = ({ entries }: { entries: AuditEntry[] }) => {
                     ml: 3.25,
                   }}
                 >
-                  <Typography variant="caption" sx={{ color: "#999", fontSize: 11 }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "#999", fontSize: 11 }}
+                  >
                     {new Date(entry.timestamp).toLocaleString("ru-RU", {
                       day: "numeric",
                       month: "short",

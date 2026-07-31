@@ -1,5 +1,11 @@
 import React from "react";
-import { Card, CardActionArea, CardContent, Typography, Box } from "@mui/material";
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  Typography,
+  Box,
+} from "@mui/material";
 
 export interface ChatThreadItemData {
   id: string;
@@ -35,10 +41,7 @@ export const ChatThreadItem = ({
         sx={{ px: 1.5, py: 1.5 }}
       >
         <CardContent sx={{ p: 0, "&:last-child": { pb: 0 } }}>
-          <Typography
-            variant="body2"
-            sx={{ fontWeight: 500, fontSize: 13 }}
-          >
+          <Typography variant="body2" sx={{ fontWeight: 500, fontSize: 13 }}>
             {thread.title}
           </Typography>
           <Typography variant="caption" color="text.secondary">

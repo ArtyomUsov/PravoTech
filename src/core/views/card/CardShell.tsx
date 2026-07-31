@@ -25,10 +25,10 @@ export const CardShell = ({
     card.priority === "P0"
       ? "#d32f2f"
       : card.priority === "P1"
-      ? "#f57c00"
-      : card.priority === "P2"
-      ? "#1976d2"
-      : "#757575";
+        ? "#f57c00"
+        : card.priority === "P2"
+          ? "#1976d2"
+          : "#757575";
 
   return (
     <Card

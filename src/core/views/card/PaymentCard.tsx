@@ -9,14 +9,22 @@ export const PaymentCard = ({
   onResolve,
   onOpenDocument,
 }: CardProps) => (
-  <CardShell card={card} icon="💰" isResolving={isResolving} onOpenDocument={onOpenDocument}>
+  <CardShell
+    card={card}
+    icon="💰"
+    isResolving={isResolving}
+    onOpenDocument={onOpenDocument}
+  >
     <CardActions sx={{ px: 0, gap: 0.5, flexWrap: "wrap" }}>
       <Button
         size="small"
         variant="contained"
         color="primary"
         disabled={isResolving}
-        onClick={(e) => { e.stopPropagation(); onResolve("approved"); }}
+        onClick={(e) => {
+          e.stopPropagation();
+          onResolve("approved");
+        }}
         sx={{ fontSize: 12, py: 0.25 }}
       >
         К оплате
@@ -26,7 +34,10 @@ export const PaymentCard = ({
         variant="outlined"
         color="inherit"
         disabled={isResolving}
-        onClick={(e) => { e.stopPropagation(); onResolve("modified"); }}
+        onClick={(e) => {
+          e.stopPropagation();
+          onResolve("modified");
+        }}
         sx={{ fontSize: 12, py: 0.25 }}
       >
         Изменить
@@ -36,7 +47,10 @@ export const PaymentCard = ({
         variant="outlined"
         color="inherit"
         disabled={isResolving}
-        onClick={(e) => { e.stopPropagation(); onResolve("rejected"); }}
+        onClick={(e) => {
+          e.stopPropagation();
+          onResolve("rejected");
+        }}
         sx={{ fontSize: 12, py: 0.25 }}
       >
         Отклонить

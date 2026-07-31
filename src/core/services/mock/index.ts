@@ -1,2 +1,2 @@
-export * from './data'
-export * from './delay'
+export * from "./data";
+export * from "./delay";

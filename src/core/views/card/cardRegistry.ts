@@ -12,7 +12,10 @@ import { ReviewCard } from "./ReviewCard";
  * Добавление нового типа = новый компонент + запись в маппинг.
  * Никаких if/else или switch.
  */
-export const cardComponents: Record<CardType, React.ComponentType<CardProps>> = {
+export const cardComponents: Record<
+  CardType,
+  React.ComponentType<CardProps>
+> = {
   [CardType.Approval]: ApprovalCard,
   [CardType.Deadline]: DeadlineCard,
   [CardType.Payment]: PaymentCard,
