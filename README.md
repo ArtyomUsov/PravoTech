@@ -1,4 +1,4 @@
-# ПратоТех — UI/UX прототип юридической платформы с AI-агентом
+# ПравоТех — UI/UX прототип юридической платформы с AI-агентом
 
 [Демо на GitHub Pages](https://artyomusov.github.io/PravoTech/)
 
